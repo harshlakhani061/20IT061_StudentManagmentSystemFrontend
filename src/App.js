@@ -1,13 +1,18 @@
-import './App.css';
-import Student from './Components/Student';
-import StudentList from './Components/StudentList'
+import "./App.css";
+import Footer from "./Components/Footer";
+import NavBar from "./Components/NavBar";
+import Student from "./Components/Student";
+import StudentList from "./Components/StudentList";
+
 
 function App() {
   return (
     <div className="App">
 
-     <Student/>
-     <StudentList/>
+      <NavBar />
+           <Student />
+           <StudentList />
+           <Footer />
 
     </div>
   );
