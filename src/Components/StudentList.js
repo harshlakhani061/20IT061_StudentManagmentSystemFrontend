@@ -3,6 +3,7 @@ import {Button, ButtonGroup, Card, Container, Table} from "react-bootstrap";
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 export default function StudentList() {
 
@@ -58,8 +59,10 @@ export default function StudentList() {
                                         <td>{student.address}</td>
                                         <td>
                                             <ButtonGroup>
+                                                <Link to={"/student/" + student.id}>
                                                 <Button size="sm" variant="outline-primary"><FontAwesomeIcon
                                                     icon={faEdit}>Edit</FontAwesomeIcon></Button>
+                                                 </Link>
                                                 <Button size="sm" variant="outline-danger"><FontAwesomeIcon
                                                     icon={faTrash}>Delete</FontAwesomeIcon></Button>
                                             </ButtonGroup>

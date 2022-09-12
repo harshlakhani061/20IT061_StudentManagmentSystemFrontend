@@ -14,6 +14,7 @@ function App() {
                <Container>
                    <Routes>
                        <Route path="student" element={<Student/>}/>
+                       <Route path="student/:studentId" element={<Student/>}/>
                        <Route path="listStudents" element={<StudentList/>}/>
                    </Routes>
                </Container>
