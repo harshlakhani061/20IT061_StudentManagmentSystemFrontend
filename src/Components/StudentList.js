@@ -14,7 +14,7 @@ export default function StudentList(props) {
     }, [])
 
     let getStudents = () => {
-        axios.get("http://localhost:8080/listStudents")
+        axios.get("http://localhost:8080/listStudents", {withCredentials:true})
             .then((response) => setStudents(response.data))
             .catch((error) => alert(error));
     }

@@ -17,6 +17,9 @@ export default function NavBar() {
                               <Link to="/student" className="nav-link">Add Student</Link>
                               <Link to="/listStudents" className="nav-link">View Students</Link>
                           </Nav>
+                           <Nav className="me-end">
+                           <Link to="/login" className="nav-link">Login</Link>
+                            </Nav>
                       </Navbar.Collapse>
                   </Container>
               </Navbar>
