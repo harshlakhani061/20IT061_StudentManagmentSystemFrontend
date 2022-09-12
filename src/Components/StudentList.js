@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 
-export default function StudentList() {
+export default function StudentList(props) {
 
     const [students, setStudents] = useState([]);
 
@@ -20,15 +20,14 @@ export default function StudentList() {
     }
 
     let deleteStudent = (studentId) => {
-            axios.delete("http://localhost:8080/student/" + studentId)
-                .then(response => {
-                    if (response.data !== null) {
-                        alert("Record Deleted Successfully");
-                        setStudents(students.filter(student => student.id !== studentId));
-                    }
-                })
-        }
-
+        axios.delete("http://localhost:8080/student/" + studentId)
+            .then(response => {
+                if (response.data !== null) {
+                    props.showAlert("success", "Record Deleted Successfully");
+                    setStudents(students.filter(student => student.id !== studentId));
+                }
+            })
+    }
     return (
         <div className="my-3">
             <Container>
@@ -49,7 +48,7 @@ export default function StudentList() {
                         {
                             students.length === 0 ? (
                                     <tr>
-                                        <td>{students.length} Students Available!!!</td>
+                                        <td colSpan={3}>{students.length} Students Available!!!</td>
                                     </tr>
                                 ) :
                                 (students.map((student) =>
@@ -60,10 +59,11 @@ export default function StudentList() {
                                         <td>
                                             <ButtonGroup>
                                                 <Link to={"/student/" + student.id}>
-                                                <Button size="sm" variant="outline-primary"><FontAwesomeIcon
-                                                    icon={faEdit}>Edit</FontAwesomeIcon></Button>
-                                                 </Link>
-                                                <Button size="sm" variant="outline-danger"><FontAwesomeIcon
+                                                    <Button size="sm" variant="outline-primary"><FontAwesomeIcon
+                                                        icon={faEdit}>Edit</FontAwesomeIcon></Button>
+                                                </Link>
+                                                <Button size="sm" variant="outline-danger"
+                                                        onClick={deleteStudent.bind(this, student.id)}><FontAwesomeIcon
                                                     icon={faTrash}>Delete</FontAwesomeIcon></Button>
                                             </ButtonGroup>
                                         </td>

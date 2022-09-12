@@ -3,12 +3,12 @@ import React, {useEffect, useState} from "react";
 import {Container, Form, Card, Button} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 
-export default function Student() {
+export default function Student(props) {
     const [id, setId] = useState([]);
     const [name, setName] = useState([]);
     const [address, setAddress] = useState([]);
 
-    const { studentId } = useParams();
+    const {studentId} = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,9 +21,9 @@ export default function Student() {
                         setAddress((response.data.address));
                     }
                 })
-                .catch((error) => alert(error));
+                .catch((error) => props.showAlert("danger", "Error"));
         }
-    },[])
+    }, [])
 
     let student = {
         id: id,
@@ -47,10 +47,10 @@ export default function Student() {
             .post("http://localhost:8080/student", student)
             .then((response) => {
                 if (response.data != null) {
-                    alert("Record Added Successfully!!!");
+                    props.showAlert("success", "Record Added Successfully!!!");
                 }
             })
-            .catch((error) => alert(error));
+            .catch((error) => props.showAlert("danger", "Error"));
         setId("");
         setName("");
         setAddress("");
@@ -61,7 +61,7 @@ export default function Student() {
         axios.put("http://localhost:8080/student/" + studentId, student)
             .then((response) => {
                 if (response.data != null) {
-                    alert("Record Updated Successfully!!!");
+                    props.showAlert("success", "Record Updated Successfully!!!");
                     navigate("/listStudents");
                 }
             })
