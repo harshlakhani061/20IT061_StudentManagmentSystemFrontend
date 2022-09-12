@@ -19,7 +19,9 @@ export default function NavBar() {
                           </Nav>
                            <Nav className="me-end">
                            <Link to="/login" className="nav-link">Login</Link>
-                            </Nav>
+                           <Link to="/register" className="nav-link">Register</Link>
+
+                           </Nav>
                       </Navbar.Collapse>
                   </Container>
               </Navbar>
